@@ -49,5 +49,30 @@ describe('FizzBuzz', () => {
     assert.equal(result, 'fizz');
   });
   
-
+  it('Should return buzz if num equals 5', () => {
+    //Given num is 5
+    let num = 5;
+    //When 
+    let result = fizzBuzz(num);
+    //Then
+    assert.equal(result, 'buzz');
+  });
+  
+  it('Should return buzz if num equals 10', () => {
+    //Given num is 10
+    let num = 10;
+    //When 
+    let result = fizzBuzz(num);
+    //Then
+    assert.equal(result, 'buzz');
+  });
+  it('Should return buzz if num equals 550', () => {
+    //Given num is 550
+    let num = 550;
+    //When 
+    let result = fizzBuzz(num);
+    //Then
+    assert.equal(result, 'buzz');
+  });
+  
 });

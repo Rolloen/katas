@@ -5,5 +5,9 @@ export var fizzBuzz = (num) => {
     console.log('fizz');
     return 'fizz';
   }
+  if (num % 5 === 0) {
+    console.log('buzz');
+    return 'buzz';
+  }
   return num;
 }
