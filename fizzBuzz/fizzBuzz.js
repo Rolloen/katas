@@ -1,6 +1,9 @@
 'use strict';
 
 export var fizzBuzz = (num) => {
-  console.log(num);
+  if (num % 3 === 0) {
+    console.log('fizz');
+    return 'fizz';
+  }
   return num;
 }

@@ -22,5 +22,32 @@ describe('FizzBuzz', () => {
     //Then
     assert.equal(result, 4);
   });
+
+  it('Should return fizz if num equals 3', () => {
+    //Given num is 3
+    let num = 3;
+    //When 
+    let result = fizzBuzz(num);
+    //Then
+    assert.equal(result, 'fizz');
+  });
   
+  it('Should return fizz if num equals 6', () => {
+    //Given num is 6
+    let num = 6;
+    //When 
+    let result = fizzBuzz(num);
+    //Then
+    assert.equal(result, 'fizz');
+  });
+  it('Should return fizz if num equals 999', () => {
+    //Given num is 999
+    let num = 999;
+    //When 
+    let result = fizzBuzz(num);
+    //Then
+    assert.equal(result, 'fizz');
+  });
+  
+
 });
