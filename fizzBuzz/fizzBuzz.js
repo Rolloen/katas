@@ -1,13 +1,12 @@
 'use strict';
 
 export var fizzBuzz = (num) => {
+  let str = '';
   if (num % 3 === 0) {
-    console.log('fizz');
-    return 'fizz';
+    str += 'fizz';
   }
   if (num % 5 === 0) {
-    console.log('buzz');
-    return 'buzz';
+    str += 'buzz';
   }
-  return num;
+  return str ? str : num;
 }
