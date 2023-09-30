@@ -75,5 +75,38 @@ describe ('string calculator tests', () => {
         });
         
     });
+    describe('Step 5 : negative numbers', () => {
+        it('Given "-1,2,3" string should throw error "negatives not allowed : -1"', () => {
+            let expectedError = new Error('negatives not allowed : -1');
+            let thrownErr;
+            //Given
+            const stringCalc = "-1,2,3";
+            //When
+            try {
+                Add(stringCalc);
+            } catch (error) {
+                thrownErr = error;
+            }
+            //Then
+            expect(thrownErr).toEqual(expectedError);
+        });
+
+        // it('Given "-1,-2,-3" string should throw error "negatives not allowed : -1"', () => {
+        //     let expectedError = new Error('negatives not allowed : -1');
+        //     let thrownErr;
+        //     //Given
+        //     const stringCalc = "-1,2,3";
+        //     //When
+        //     try {
+        //         Add(stringCalc);
+        //     } catch (error) {
+        //         thrownErr = error;
+        //     }
+        //     //Then
+        //     expect(thrownErr).toEqual(expectedError);
+        // });
+
+        
+    });
     
 });

@@ -18,8 +18,12 @@ export default function Add (numbers) {
         finalSplitedString = numbers.split(/[\n,]/);
     }
 
-    const initialValue = 0;
-    const sumOfElements = finalSplitedString.reduce((currentSum, currentValue) => currentSum + parseInt(currentValue), initialValue);
-
-    return sumOfElements;
+    let sumValue = 0;
+    for (const str of finalSplitedString) {
+        if (parseInt(str) < 0) {
+            throw new Error('negatives not allowed : ' + str);
+        }
+        sumValue += parseInt(str)
+    }
+    return sumValue;
 }
