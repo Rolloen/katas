@@ -4,18 +4,18 @@ export default function Add (numbers) {
     }
     
     let delimiter = '';
-    let firstSplitedString = numbers.split('\n');
-    let firstIndex = firstSplitedString[0];
-
-    if (isNaN(parseInt(firstIndex))) {
-        delimiter = firstIndex.substring(2, firstIndex.length);
-    }
+    let hasCustomDelimiter = numbers[0] === '/';
     let finalSplitedString = [];
-    if (delimiter && delimiter.length > 0) {
+    if (hasCustomDelimiter) {
+        let firstSplitedString = numbers.split('\n');
+        let firstIndex = firstSplitedString[0];
+    
+        if (isNaN(parseInt(firstIndex))) {
+            delimiter = firstIndex.substring(2, firstIndex.length);
+        }
         finalSplitedString = firstSplitedString[1].split(delimiter);
     } else {
         finalSplitedString = numbers.split(/[\n,]/);
-
     }
 
     const initialValue = 0;
