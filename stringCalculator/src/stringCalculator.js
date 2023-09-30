@@ -19,11 +19,17 @@ export default function Add (numbers) {
     }
 
     let sumValue = 0;
+    let errMsg = [];
     for (const str of finalSplitedString) {
         if (parseInt(str) < 0) {
-            throw new Error('negatives not allowed : ' + str);
+            errMsg.push(str);
+            continue;
+        } else {
+            sumValue += parseInt(str)
         }
-        sumValue += parseInt(str)
+    }
+    if(errMsg && errMsg.length > 0) {
+        throw new Error('negatives not allowed : ' + errMsg);
     }
     return sumValue;
 }
