@@ -1,12 +1,10 @@
-
-
 const MAX_INT = 1000;
 
-export default function Add (numbers) {
+export default function Add(numbers) {
     if (numbers === "") {
         return 0;
     }
-    
+
     let hasCustomDelimiter = numbers[0] === '/';
     let finalSplitedString = [];
     if (hasCustomDelimiter) {
@@ -27,39 +25,20 @@ export default function Add (numbers) {
 function getNumbersWithCustomDelimiter(numbersString) {
     let delimiters = [];
     let firstSplitedString = numbersString.split('\n');
-    let firstIndex = firstSplitedString[0];
+    let delimiterStr = firstSplitedString[0];
 
-    if (isNaN(parseInt(firstIndex))) {
-        let hasMultipleDelimiter = firstIndex.includes('[');
+    if (isNaN(parseInt(delimiterStr))) {
+        let hasMultipleDelimiter = delimiterStr.includes('[');
         let delimiterStart = 2;
-        let delimiterEnd = firstIndex.length;
+        let delimiterEnd = delimiterStr.length;
         if (hasMultipleDelimiter) {
-            let splitedFirstIndex = firstIndex.split('');
-            for (let i = 0; i < splitedFirstIndex.length; i++) {
-                const char = splitedFirstIndex[i];
-                let found = false;
-                switch (char) {
-                    case '[':
-                        delimiterStart = i +1 ;
-                        break;
-                    case ']':
-                         delimiterEnd = i;
-                         found = true;
-                         break
-                    default:
-                        break;
-                }
-                if (found) {
-                    delimiters.push(firstIndex.substring(delimiterStart, delimiterEnd));
-                    found = false;
-                }
-            }
+            delimiters = findMultipleDelimiters(delimiterStr);
         } else {
-            delimiters.push(firstIndex.substring(delimiterStart, delimiterEnd));
-        }        
+            delimiters.push(delimiterStr.substring(delimiterStart, delimiterEnd));
+        }
     }
-    let regex = ''
-    if (delimiters.length > 1 ) {        
+    let regex = '';
+    if (delimiters.length > 1) {
         let regexStr = '[';
         for (const delim of delimiters) {
             regexStr += delim;
@@ -70,6 +49,33 @@ function getNumbersWithCustomDelimiter(numbersString) {
     }
 
     return firstSplitedString[1].split(regex);
+}
+
+function findMultipleDelimiters(delimiterStr) {
+    let tmpDelimiters = [];
+    let delimiterStart = 0;
+    let delimiterEnd = 0;
+    let splitedDelimiterStr = delimiterStr.split('');
+    for (let i = 0; i < splitedDelimiterStr.length; i++) {
+        const char = splitedDelimiterStr[i];
+        let found = false;
+        switch (char) {
+            case '[':
+                delimiterStart = i + 1;
+                break;
+            case ']':
+                delimiterEnd = i;
+                found = true;
+                break
+            default:
+                break;
+        }
+        if (found) {
+            tmpDelimiters.push(delimiterStr.substring(delimiterStart, delimiterEnd));
+            found = false;
+        }
+    }
+    return tmpDelimiters
 }
 
 function sumOfNumber(numberArray) {
