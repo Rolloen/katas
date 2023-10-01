@@ -105,8 +105,16 @@ describe ('string calculator tests', () => {
             //Then
             expect(thrownErr).toEqual(expectedError);
         });
-
-        
+    });
+    describe('Step 6 : big numbers should be ignored', () => {
+        it('Given "1,2,10000" string should return number 3', () => {
+            //Given
+            const stringCalc = "1,2,10000";
+            //When
+            let res = Add(stringCalc);
+            //Then
+            expect(res).toEqual(3);
+        });
     });
     
 });

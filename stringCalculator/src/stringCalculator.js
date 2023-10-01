@@ -1,3 +1,7 @@
+
+
+const MAX_INT = 1000;
+
 export default function Add (numbers) {
     if (numbers === "") {
         return 0;
@@ -21,11 +25,14 @@ export default function Add (numbers) {
     let sumValue = 0;
     let errMsg = [];
     for (const str of finalSplitedString) {
-        if (parseInt(str) < 0) {
+        let parsedInt = parseInt(str);
+        if (parsedInt < 0) {
             errMsg.push(str);
             continue;
+        } else if (parsedInt > MAX_INT) {
+            continue
         } else {
-            sumValue += parseInt(str)
+            sumValue += parsedInt;
         }
     }
     if(errMsg && errMsg.length > 0) {
