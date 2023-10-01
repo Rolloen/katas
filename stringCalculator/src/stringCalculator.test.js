@@ -116,5 +116,15 @@ describe ('string calculator tests', () => {
             expect(res).toEqual(3);
         });
     });
+    describe('Step 7 : multiple length delimiter', () => {
+        it('Given "//[***]\n1***2***3" string should return number 6', () => {
+            //Given
+            const stringCalc = "//[***]\n1***2***3";
+            //When
+            let res = Add(stringCalc);
+            //Then
+            expect(res).toEqual(6);
+        });
+    });
     
 });

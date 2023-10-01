@@ -30,7 +30,9 @@ function getNumbersWithCustomDelimiter(numbersString) {
     let firstIndex = firstSplitedString[0];
 
     if (isNaN(parseInt(firstIndex))) {
-        delimiter = firstIndex.substring(2, firstIndex.length);
+        let delimiterStart = firstIndex[2] === '[' ? 3 : 2;
+        let delimiterEnd = firstIndex.indexOf(']') > 0 ? firstIndex.indexOf(']') : firstIndex.length;
+        delimiter = firstIndex.substring(delimiterStart, delimiterEnd);
     }
     return firstSplitedString[1].split(delimiter);
 }
