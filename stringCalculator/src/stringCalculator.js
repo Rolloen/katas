@@ -7,24 +7,38 @@ export default function Add (numbers) {
         return 0;
     }
     
-    let delimiter = '';
     let hasCustomDelimiter = numbers[0] === '/';
     let finalSplitedString = [];
     if (hasCustomDelimiter) {
-        let firstSplitedString = numbers.split('\n');
-        let firstIndex = firstSplitedString[0];
-    
-        if (isNaN(parseInt(firstIndex))) {
-            delimiter = firstIndex.substring(2, firstIndex.length);
-        }
-        finalSplitedString = firstSplitedString[1].split(delimiter);
+        finalSplitedString = getNumbersWithCustomDelimiter(numbers)
     } else {
         finalSplitedString = numbers.split(/[\n,]/);
     }
 
     let sumValue = 0;
+    try {
+        sumValue = sumOfNumber(finalSplitedString);
+    } catch (error) {
+        throw error;
+    }
+    return sumValue;
+}
+
+function getNumbersWithCustomDelimiter(numbersString) {
+    let delimiter = '';
+    let firstSplitedString = numbersString.split('\n');
+    let firstIndex = firstSplitedString[0];
+
+    if (isNaN(parseInt(firstIndex))) {
+        delimiter = firstIndex.substring(2, firstIndex.length);
+    }
+    return firstSplitedString[1].split(delimiter);
+}
+
+function sumOfNumber(numberArray) {
     let errMsg = [];
-    for (const str of finalSplitedString) {
+    let sumValue = 0;
+    for (const str of numberArray) {
         let parsedInt = parseInt(str);
         if (parsedInt < 0) {
             errMsg.push(str);
@@ -35,7 +49,7 @@ export default function Add (numbers) {
             sumValue += parsedInt;
         }
     }
-    if(errMsg && errMsg.length > 0) {
+    if (errMsg && errMsg.length > 0) {
         throw new Error('negatives not allowed : ' + errMsg);
     }
     return sumValue;
