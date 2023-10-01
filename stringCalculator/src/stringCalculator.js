@@ -25,16 +25,51 @@ export default function Add (numbers) {
 }
 
 function getNumbersWithCustomDelimiter(numbersString) {
-    let delimiter = '';
+    let delimiters = [];
     let firstSplitedString = numbersString.split('\n');
     let firstIndex = firstSplitedString[0];
 
     if (isNaN(parseInt(firstIndex))) {
-        let delimiterStart = firstIndex[2] === '[' ? 3 : 2;
-        let delimiterEnd = firstIndex.indexOf(']') > 0 ? firstIndex.indexOf(']') : firstIndex.length;
-        delimiter = firstIndex.substring(delimiterStart, delimiterEnd);
+        let hasMultipleDelimiter = firstIndex.includes('[');
+        let delimiterStart = 2;
+        let delimiterEnd = firstIndex.length;
+        if (hasMultipleDelimiter) {
+            let splitedFirstIndex = firstIndex.split('');
+            for (let i = 0; i < splitedFirstIndex.length; i++) {
+                const char = splitedFirstIndex[i];
+                let found = false;
+                switch (char) {
+                    case '[':
+                        delimiterStart = i +1 ;
+                        break;
+                    case ']':
+                         delimiterEnd = i;
+                         found = true;
+                         break
+                    default:
+                        break;
+                }
+                if (found) {
+                    delimiters.push(firstIndex.substring(delimiterStart, delimiterEnd));
+                    found = false;
+                }
+            }
+        } else {
+            delimiters.push(firstIndex.substring(delimiterStart, delimiterEnd));
+        }        
     }
-    return firstSplitedString[1].split(delimiter);
+    let regex = ''
+    if (delimiters.length > 1 ) {        
+        let regexStr = '[';
+        for (const delim of delimiters) {
+            regexStr += delim;
+        }
+        regex = new RegExp(regexStr + ']');
+    } else {
+        regex = delimiters[0];
+    }
+
+    return firstSplitedString[1].split(regex);
 }
 
 function sumOfNumber(numberArray) {

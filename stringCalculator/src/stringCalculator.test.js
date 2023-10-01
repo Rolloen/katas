@@ -126,5 +126,23 @@ describe ('string calculator tests', () => {
             expect(res).toEqual(6);
         });
     });
+    describe('Step 8 : multiple delimiter', () => {
+        it('Given "//[*][%]\n1*2%3" string should return number 6', () => {
+            //Given
+            const stringCalc = "//[*][%]\n1*2%3";
+            //When
+            let res = Add(stringCalc);
+            //Then
+            expect(res).toEqual(6);
+        });
+        it('Given "//[*][%][$][p]\n1*2%3*4p5$6" string should return number 21', () => {
+            //Given
+            const stringCalc = "//[*][%][$][p]\n1*2%3*4p5$6";
+            //When
+            let res = Add(stringCalc);
+            //Then
+            expect(res).toEqual(21);
+        });
+    });
     
 });
