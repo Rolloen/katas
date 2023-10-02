@@ -144,5 +144,15 @@ describe ('string calculator tests', () => {
             expect(res).toEqual(21);
         });
     });
+    describe('Step 9 : multiple delimiter with multiple length', () => {
+        it('Given "//[***][%%%%][$]\n1***2%%%%3$4" string should return number 10', () => {
+            //Given
+            const stringCalc = "//[***][%%%%][$]\n1***2%%%%3$4";
+            //When
+            let res = Add(stringCalc);
+            //Then
+            expect(res).toEqual(10);
+        });
+    });
     
 });

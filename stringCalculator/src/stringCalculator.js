@@ -47,7 +47,7 @@ function getNumbersWithCustomDelimiter(numbersString) {
     } else {
         regex = delimiters[0];
     }
-
+    
     return firstSplitedString[1].split(regex);
 }
 
