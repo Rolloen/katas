@@ -28,26 +28,26 @@ function getNumbersWithCustomDelimiter(numbersString) {
     let delimiterStr = firstSplitedString[0];
 
     if (isNaN(parseInt(delimiterStr))) {
-        let hasMultipleDelimiter = delimiterStr.includes('[');
-        let delimiterStart = 2;
-        let delimiterEnd = delimiterStr.length;
+        let hasMultipleDelimiter = delimiterStr.includes('][');
+        let delimiterStartIndex = delimiterStr[2] === '[' ? 3 : 2 ;
+        let delimiterEndIndex = delimiterStr[delimiterStr.length - 1] === ']' ? delimiterStr.length -1 : delimiterStr.length;
         if (hasMultipleDelimiter) {
             delimiters = findMultipleDelimiters(delimiterStr);
         } else {
-            delimiters.push(delimiterStr.substring(delimiterStart, delimiterEnd));
+            delimiters.push(delimiterStr.substring(delimiterStartIndex, delimiterEndIndex));
         }
     }
+
     let regex = '';
     if (delimiters.length > 1) {
-        let regexStr = '[';
+        let regexStr = '';
         for (const delim of delimiters) {
-            regexStr += delim;
+            regexStr += delimiters[delimiters.length - 1] === delim ? `(?:\\${delim.split('').join('\\')})` : `(?:\\${delim.split('').join('\\')})|`;            
         }
-        regex = new RegExp(regexStr + ']');
+        regex = new RegExp(regexStr,'g');
     } else {
         regex = delimiters[0];
     }
-    
     return firstSplitedString[1].split(regex);
 }
 

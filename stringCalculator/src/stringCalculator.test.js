@@ -153,6 +153,14 @@ describe ('string calculator tests', () => {
             //Then
             expect(res).toEqual(10);
         });
+        it('Given "//[***][%%%%][$ùùù][:::]\n1***2%%%%47:::3$ùùù4" string should return number 57', () => {
+            //Given
+            const stringCalc = "//[***][%%%%][$ùùù][:::]\n1***2%%%%47:::3$ùùù4";
+            //When
+            let res = Add(stringCalc);
+            //Then
+            expect(res).toEqual(57);
+        });
     });
     
 });
