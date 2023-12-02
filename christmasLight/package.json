@@ -1,0 +1,19 @@
+{
+  "name": "christmaslight",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test":  "nodemon --ext js --exec 'jasmine'",
+    "start": "concurrently \"npx tsc --watch\" \"nodemon ./dist/index.js\""
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jasmine": "^5.1.4",
+    "concurrently": "^8.2.2",
+    "jasmine": "^5.1.0",
+    "nodemon": "^3.0.2",
+    "typescript": "^5.3.2"
+  }
+}
