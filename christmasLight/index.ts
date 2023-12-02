@@ -1,8 +1,12 @@
+import { setLightsArray } from "./christmasLight";
 
+const main = () : void => {
+    const array = setLightsArray();
+    array.forEach((nestedArray ) => {
+        nestedArray.forEach((char) => {
+            process.stdout.write(char)
+        })
+    })
+}
 
-const xSize = 1000;
-
-export const setLightsArray = () : number[] => {
- 
-    return new Array<number>(xSize);
-} 
+main();
